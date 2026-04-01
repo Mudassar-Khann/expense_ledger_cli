@@ -1,5 +1,36 @@
 import tracker
 
-while True:
 
-    user_choice = input("")
+
+
+def main():
+    commands = {"add", "list", "search", "exit"}
+
+    print("Available commands:" , commands)
+    while True:
+
+
+        user_choice = input("Enter your command: ").strip().lower()
+
+
+
+
+        if user_choice == "exit":
+            break
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+
+   main()
+
+
+
+
+
+
