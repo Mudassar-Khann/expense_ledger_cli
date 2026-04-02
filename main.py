@@ -12,6 +12,11 @@ def main():
 
         user_choice = input("Enter your command: ").strip().lower()
 
+        if user_choice not in commands:
+            print(user_choice, "command is not avelibal")
+            continue
+
+
 
 
 
