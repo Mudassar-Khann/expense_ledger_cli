@@ -16,14 +16,15 @@ def main():
             print(user_choice, "command is not avelibal")
             continue
 
+        if user_choice == "add":
+            pass
+        elif user_choice == "list":
+            pass
+        elif user_choice == "search":
+            pass
 
-
-
-
-        if user_choice == "exit":
+        elif user_choice == "exit":
             break
-
-
 
 
 
