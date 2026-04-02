@@ -1,9 +1,10 @@
-import tracker
+from tracker import ExpenseTracker
 
 
 
 
 def main():
+    tr = ExpenseTracker()
     commands = {"add", "list", "search", "exit"}
 
     print("Available commands:" , commands)
@@ -17,12 +18,22 @@ def main():
             continue
 
         if user_choice == "add":
-            pass
+            amount = input("Enter amount: ")
+            category = input("Enter category: ")
+            description = input("Enter description: ")
+
+            tr.add_transiction(amount, category, description)
+
+            print("Transaction added successfully.")
+
+
         elif user_choice == "list":
-            pass
+
+            tr.list_transactions
+
+
         elif user_choice == "search":
             pass
-
         elif user_choice == "exit":
             break
 
