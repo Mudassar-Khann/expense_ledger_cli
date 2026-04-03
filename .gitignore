@@ -1,8 +1,9 @@
 .venv/
 __pycache__/
 *.pyc
-*.pyo
 *.txt
 .vscode/
 *.log
 tumb.db
+data/
+logs/
