@@ -1,10 +1,12 @@
+from datetime import datetime, timezone
+
 class Transcation:
 
-    def __init__(self, amount, category, description, date):
+    def __init__(self, amount, category, description):
         self.amount = amount
         self.category = category
         self.description = description
-        self.date = date
+        self.date = datetime.now(timezone.utc).isoformat()
 
 
     def to_dict(self):
