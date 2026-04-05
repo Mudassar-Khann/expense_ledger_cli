@@ -16,10 +16,27 @@ class ExpenseTracker:
 
 
     def list_transactions(self):
-        pass
+        no = 0
+        for i in self.transictions:
+            no += 1
+            yield f"[{no}] {i.amount} | {i.category} | {i.description} | {i.readable_date()}"
 
-    def search_transactions(self, word):
-        pass
+
+    def search_transactions(self, keyword=None, category=None):
+        if (keyword and category) is not None:
+            return [x for x in self.transictions if keyword in x.decription and category in x.category]
+
+        elif keyword is not None and category is None:
+             return [x for x in self.transictions if keyword in x.decription]
+
+        elif category is not None and keyword is None:
+             return [x for x in self.transictions if category in x.category]
+
+        else:
+            return self.transictions
+
+
+
 
 
 
