@@ -16,17 +16,14 @@ class ExpenseTracker:
 
 
     def list_transactions(self):
-        if  not self.transictions:
-            yield False
-        no = 0
-        for i in self.transictions:
-            no += 1
-            yield f"[{no}] {i.amount} | {i.category} | {i.description} | {i.readable_date()}"
-
+        result = []
+        for i, t in enumerate(self.transactions, 1):
+            result.append(f"[{i}] {t.amount} | {t.category} | {t.description} | {t.readable_date()}")
+        return result
 
     def search_transactions(self, keyword=None, category=None):
         if keyword  and category:
-            return [x for x in self.transictions if keyword in x.decription and category in x.category]
+            return [x for x in self.transictions if keyword in x.desription and category in x.category]
 
         elif keyword and not category:
              return [x for x in self.transictions if keyword in x.desription]
