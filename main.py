@@ -1,9 +1,8 @@
 from tracker import ExpenseTracker
 
-
-
 def main():
     tr = ExpenseTracker()
+    tr.load_transactions()
     commands = {"add", "list", "search", "exit"}
 
     print("Available commands:" , commands, "\n")
@@ -29,8 +28,11 @@ def main():
         elif user_choice == "list":
 
             transanction_list = tr.list_transactions()
+
+            if not next(transanction_list):
+                print("List is empty \n")
+                continue
             print("Press 'Enter' to look one at a time or type 'all' to see full list ")
-            count = 0
             option = input(">")
             if option == "all":
                  for tras in transanction_list:
@@ -50,15 +52,26 @@ def main():
             print("end of transactions ", end="\n\n")
 
 
-
-
-
-
-
-
-
         elif user_choice == "search":
-            pass
+            print("Enter 'Keyword' or 'Category' of what you wanna search or press 'Enter' to skip ")
+            keyword = input("Enter the keyword: ").strip().lower()
+            category = input("Enter the category: ").strip().lower()
+
+            search_result = tr.search_transactions(keyword, category)
+
+            if search_result:
+
+                no = 0
+                for trans in search_result:
+                    no += 1
+                    print(f"{no}. Amount: {trans.amount} | Category: {trans.category} | Description: {trans.description}")
+
+            else:
+                print(search_result)
+                print("No transactions found.")
+
+            print("\n")
+
         elif user_choice == "exit":
             break
 
