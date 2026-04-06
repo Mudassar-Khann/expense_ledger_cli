@@ -16,6 +16,8 @@ class ExpenseTracker:
 
 
     def list_transactions(self):
+        if  not self.transictions:
+            yield False
         no = 0
         for i in self.transictions:
             no += 1
@@ -23,13 +25,13 @@ class ExpenseTracker:
 
 
     def search_transactions(self, keyword=None, category=None):
-        if (keyword and category) is not None:
+        if keyword  and category:
             return [x for x in self.transictions if keyword in x.decription and category in x.category]
 
-        elif keyword is not None and category is None:
+        elif keyword and not category:
              return [x for x in self.transictions if keyword in x.decription]
 
-        elif category is not None and keyword is None:
+        elif category and not keyword:
              return [x for x in self.transictions if category in x.category]
 
         else:
