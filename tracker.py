@@ -29,13 +29,18 @@ class ExpenseTracker:
             return [x for x in self.transictions if keyword in x.decription and category in x.category]
 
         elif keyword and not category:
-             return [x for x in self.transictions if keyword in x.decription]
+             return [x for x in self.transictions if keyword in x.desription]
 
         elif category and not keyword:
              return [x for x in self.transictions if category in x.category]
 
         else:
             return self.transictions
+
+    def load_transactions(self):
+        for trans in storage.load():
+            self.transictions.append(Transcation(trans["amount"], trans["category"], trans["description"], trans["date"]))
+
 
 
 
