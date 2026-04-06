@@ -10,7 +10,16 @@ logging.basicConfig(
 )
 
 
+def log_info(message):
+    logging.info(message)
 
+
+def log_error(message):
+    logging.error(message)
+
+
+def log_search(keyword, category, result):
+    logging.info(f"Search: keyword={keyword or None} category={category or None} results={result}")
 
 
 
