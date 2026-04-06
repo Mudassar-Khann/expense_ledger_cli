@@ -21,4 +21,4 @@ class Transaction:
         }
 
     def __repr__(self):
-        return f"Transaction({self.amount}, {self.category}, {self.description})"
+        return f"Transaction(amount={self.amount}, category={self.category}, description={self.description})"
