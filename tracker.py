@@ -4,13 +4,13 @@ import storage
 class ExpenseTracker:
 
     def __init__(self):
-        self.transictions = []
+        self.transactions = []
 
     def add_transiction(self, amount, category, description):
 
-        self.transictions.append(Transaction(amount, category, description,))
+        self.transactions.append(Transaction(amount, category, description,))
 
-        storage.save(self.transictions)
+        storage.save(self.transactions)
 
 
 

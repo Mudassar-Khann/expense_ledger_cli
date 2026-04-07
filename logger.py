@@ -5,7 +5,7 @@ os.makedirs("logs", exist_ok=True)
 LOG_FILE = os.path.join("logs", "app.log")
 
 logging.basicConfig(
-    filename=LOG_FILE
+    filename=LOG_FILE,
     level=logging.INFO,
     format="[%(asctime)s] [%(levelname)s] %(message)s"
 )
