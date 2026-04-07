@@ -1,13 +1,12 @@
 from tracker import ExpenseTracker
-from logger import log_error, log_info, log_search
-
+from logger import log_info, log_error, log_search
 
 def main():
     tr = ExpenseTracker()
     tr.load_transactions()
 
     commands = {"add", "list", "search", "exit"}
-    print("Available commands:" , commands, "\n")
+    print("Available commands:", commands, "\n")
 
     while True:
         user_choice = input("Enter your command: ").strip().lower()
@@ -18,10 +17,11 @@ def main():
             continue
 
         if user_choice == "add":
-
             amount = input("Enter amount: ").strip()
             category = input("Enter category: ").strip().lower()
             description = input("Enter description: ").strip().lower()
+
+
 
             if not amount.isdigit():
                 print("Invalid amount.")
@@ -34,54 +34,45 @@ def main():
             print("Transaction added successfully.\n")
 
         elif user_choice == "list":
-                    transactions = tr.list_transactions()
+            transactions = tr.list_transactions()
 
-                    if not transactions:
-                        print("List is empty\n")
-                        continue
+            if not transactions:
+                print("List is empty\n")
+                continue
 
-                    print("Press 'Enter' for one-by-one or type 'all'")
-                    option = input(">")
+            print("Press 'Enter' for one-by-one or type 'all'")
+            option = input(">")
 
-                    if option == "all":
-                        for t in transactions:
-                            print(t)
+            if option == "all":
+                for t in transactions:
+                    print(t)
 
-                    elif not option:
-                        for t in transactions:
-                            input()
-                            print(t)
-                    else:
-                        print("Invalid option")
-                        continue
-
-
-
-                    print("End of transactions\n")
-
-
-        elif user_choice == "search":
-            print("Enter 'Keyword' or 'Category' of what you wanna search or press 'Enter' to skip ")
-            keyword = input("Enter the keyword: ").strip().lower()
-            category = input("Enter the category: ").strip().lower()
-
-
-            search_result = tr.search_transactions(keyword, category)
-
-            log_search(keyword, category, len(search_result))
-
-            if search_result:
-
-                no = 0
-                for trans in search_result:
-                    no += 1
-                    print(f"{no}. Amount: {trans.amount} | Category: {trans.category} | Description: {trans.description}")
+            elif not option:
+                for t in transactions:
+                    input()
+                    print(t)
 
             else:
-                print(search_result)
+                print("Invalid option")
+                continue
+
+            print("End of transactions\n")
+
+        elif user_choice == "search":
+            keyword = input("Enter keyword: ").strip().lower()
+            category = input("Enter category: ").strip().lower()
+
+            results = tr.search_transactions(keyword, category)
+
+            log_search(keyword, category, len(results))
+
+            if results:
+                for i, t in enumerate(results, 1):
+                    print(f"{i}. Amount: {t.amount} | Category: {t.category} | Description: {t.description}")
+            else:
                 print("No transactions found.")
 
-            print("\n")
+            print()
 
         elif user_choice == "exit":
             break
@@ -90,15 +81,5 @@ def main():
 
 
 
-
 if __name__ == "__main__":
-
-   main()
-
-
-
-
-
-
-
-
+    main()
