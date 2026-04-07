@@ -2,13 +2,13 @@ import logging
 import os
 
 os.makedirs("logs", exist_ok=True)
+LOG_FILE = os.path.join("logs", "app.log")
 
 logging.basicConfig(
-    filename="logs/app.log",
+    filename=LOG_FILE
     level=logging.INFO,
     format="[%(asctime)s] [%(levelname)s] %(message)s"
 )
-
 
 def log_info(message):
     logging.info(message)
