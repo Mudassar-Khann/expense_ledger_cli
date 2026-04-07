@@ -18,11 +18,11 @@ def main():
             continue
 
         if user_choice == "add":
+
             amount = input("Enter amount: ").strip()
             category = input("Enter category: ").strip().lower()
             description = input("Enter description: ").strip().lower()
 
-            # basic validation
             if not amount.isdigit():
                 print("Invalid amount.")
                 log_error(f"Invalid amount input: {amount}")
@@ -33,32 +33,31 @@ def main():
 
             print("Transaction added successfully.\n")
 
-
         elif user_choice == "list":
+                    transactions = tr.list_transactions()
 
-            transanction_list = tr.list_transactions()
+                    if not transactions:
+                        print("List is empty\n")
+                        continue
 
-            if not next(transanction_list):
-                print("List is empty \n")
-                continue
-            print("Press 'Enter' to look one at a time or type 'all' to see full list ")
-            option = input(">")
-            if option == "all":
-                 for tras in transanction_list:
-                    print(tras)
+                    print("Press 'Enter' for one-by-one or type 'all'")
+                    option = input(">")
 
-            elif not option:
-                print("press enter to go trough list ")
-                for tras in transanction_list:
-                    option = input("")
-                    print( tras)
+                    if option == "all":
+                        for t in transactions:
+                            print(t)
+
+                    elif not option:
+                        for t in transactions:
+                            input()
+                            print(t)
+                    else:
+                        print("Invalid option")
+                        continue
 
 
-            else:
-                print("wrong input if you wanna search an item write search ")
-                continue
 
-            print("End of transactions ", end="\n\n")
+                    print("End of transactions\n")
 
 
         elif user_choice == "search":
