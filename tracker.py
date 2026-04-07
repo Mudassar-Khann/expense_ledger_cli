@@ -1,4 +1,4 @@
-from transaction import Transcation
+from transaction import Transaction
 import storage
 
 class ExpenseTracker:
@@ -8,7 +8,7 @@ class ExpenseTracker:
 
     def add_transiction(self, amount, category, description):
 
-        self.transictions.append(Transcation(amount, category, description,))
+        self.transictions.append(Transaction(amount, category, description,))
 
         storage.save(self.transictions)
 
@@ -22,21 +22,25 @@ class ExpenseTracker:
         return result
 
     def search_transactions(self, keyword=None, category=None):
-        if keyword  and category:
-            return [x for x in self.transictions if keyword in x.desription and category in x.category]
 
-        elif keyword and not category:
-             return [x for x in self.transictions if keyword in x.desription]
+        results = []
 
-        elif category and not keyword:
-             return [x for x in self.transictions if category in x.category]
+        for t in self.transactions:
+            if keyword and keyword not in t.description.lower():
+                continue
 
-        else:
-            return self.transictions
+            if category and category not in t.category.lower():
+                continue
+
+            results.append(t)
+
+        return results
 
     def load_transactions(self):
-        for trans in storage.load():
-            self.transictions.append(Transcation(trans["amount"], trans["category"], trans["description"], trans["date"]))
+        for t in storage.load():
+            self.transactions.append(
+                Transaction(t["amount"], t["category"], t["description"], t["date"])
+            )
 
 
 
