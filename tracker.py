@@ -6,7 +6,7 @@ class ExpenseTracker:
     def __init__(self):
         self.transactions = []
 
-    def add_transiction(self, amount, category, description):
+    def add_transaction(self, amount, category, description):
 
         self.transactions.append(Transaction(amount, category, description,))
 
